@@ -1,0 +1,52 @@
+server:
+  port: 8080
+spring:
+  application:
+    name: gateway
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+      routes:
+        - id: nobasis
+          uri: lb://nobasis
+          predicates:
+            - Path=/nobasis/**
+          filters:
+            - TokenRelay=
+  security:
+    oauth2:
+      client:
+        provider:
+          keycloak:
+            issuer-uri: http://localhost:9000/realms/nobasis
+        registration:
+          gateway:
+            provider: keycloak
+            client-id: nobasis-openid
+            client-secret: 2nFXGdUeAYwKb7M2veZ4TUPzJ3G7Rcj6
+            scope:
+              - email
+              - profile
+              - openid
+management:
+  endpoint:
+    gateway:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: gateway
+eureka:
+  client:
+    registerWithEureka: true
+    serviceUrl:
+      defaultZone: ${EUREKA_SERVER:http://localhost:8761/eureka}
+    healthcheck:
+      enabled: true
+logging:
+  level:
+    org:
+      springframework:
+        security: info

@@ -1,0 +1,16 @@
+spring:
+  security:
+    oauth2:
+      client:
+        provider:
+          keycloak:
+            issuer-uri: http://localhost:9000/realms/ventionteams
+        registration:
+          gateway:
+            provider: keycloak
+            client-id: ventionteams-openid
+            client-secret: 79sfub70V4RHlIHXsXCiZrPA5lEqQdw2
+            scope:
+              - openid
+              - read
+              - admin

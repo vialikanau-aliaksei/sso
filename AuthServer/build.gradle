@@ -1,0 +1,19 @@
+plugins {
+    id 'java'
+}
+
+group = 'com.ventionteams.alex'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation "org.springframework.boot:spring-boot-starter-oauth2-authorization-server:3.1.2"
+    implementation 'org.springframework.boot:spring-boot-starter-oauth2-client:3.1.0'
+}
+
+test {
+    useJUnitPlatform()
+}

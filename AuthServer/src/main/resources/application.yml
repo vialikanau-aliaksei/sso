@@ -1,0 +1,27 @@
+server:
+  port: 9000
+spring:
+  security:
+    oauth2:
+      opaquetoken:
+        user:
+          client-id: user-openid
+          client-secret: Dl6aFw44COthtGiWiSlARD0V1iRkshmA
+        admin:
+          client-id: admin-openid
+          client-secret: Dl6aFw44COthtGiWiSlARD0V1iRkshmB
+        introspector:
+          client-id: introspector-id
+          client-secret: Dl6aFw44COthtGiWiSlARD0V1iRkshmC
+      authorizationserver:
+        issuer-url: http://localhost:9000
+        introspection-endpoint: /oauth2/token-info
+      client:
+        registration:
+          google:
+            client-id: 670228736623-iptnn4bfuvvu30kc80cgsblnldd9vehg.apps.googleusercontent.com
+            client-secret: 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
+logging:
+  level:
+    org:
+      springframework: TRACE

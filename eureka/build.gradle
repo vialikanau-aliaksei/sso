@@ -1,0 +1,39 @@
+plugins {
+    id 'application'
+}
+
+apply plugin: 'java'
+
+ext {
+    javaMainClass = 'com.ventionsteams.alex.EurekaApplication'
+}
+
+
+repositories {
+    mavenLocal()
+    maven {
+        url = uri('https://repo.maven.apache.org/maven2/')
+    }
+}
+
+dependencies {
+    implementation 'com.google.code.gson:gson:2.10.1'
+    implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-server:4.0.2'
+}
+
+group = 'com.itechart.alex'
+version = '1.0'
+description = 'eureka'
+java.sourceCompatibility = JavaVersion.VERSION_17
+
+application {
+    mainClassName = javaMainClass
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
+tasks.withType(Javadoc) {
+    options.encoding = 'UTF-8'
+}

@@ -1,0 +1,1 @@
+./bin/kc.sh --verbose start-dev --debug 5050 --http-port 9000

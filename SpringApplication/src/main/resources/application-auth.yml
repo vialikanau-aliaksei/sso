@@ -1,0 +1,9 @@
+spring:
+  security:
+    oauth2:
+      resourceserver:
+        opaquetoken:
+          introspector:
+            introspection-uri: http://localhost:9000/oauth2/token-info
+            client-id: introspector-id
+            client-secret: Dl6aFw44COthtGiWiSlARD0V1iRkshmC

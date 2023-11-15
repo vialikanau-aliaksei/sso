@@ -1,0 +1,24 @@
+plugins {
+    id 'java'
+    id 'application'
+}
+
+group = 'org.ventionteams.alex'
+version = '1.0'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'com.google.code.gson:gson:2.10.1'
+    implementation 'org.springframework.boot:spring-boot-starter-web:3.1.5'
+    implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client:4.0.2'
+    implementation 'org.springframework.security:spring-security-oauth2-resource-server:6.1.1'
+    implementation 'org.springframework.boot:spring-boot-starter-oauth2-resource-server:3.1.1'
+    runtimeOnly 'com.nimbusds:oauth2-oidc-sdk:11.6'
+}
+
+test {
+    useJUnitPlatform()
+}

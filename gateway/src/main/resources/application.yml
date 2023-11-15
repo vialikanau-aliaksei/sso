@@ -1,0 +1,29 @@
+server:
+  port: 8080
+spring:
+  application:
+    name: gateway
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+      routes:
+        - id: api
+          uri: lb://resourceapp
+          predicates:
+            - Path=/api/**
+          filters:
+            - TokenRelay=
+        - id: token
+          uri: lb://resourceapp
+          predicates:
+            - Path=/token/**
+          filters:
+            - TokenRelay=
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
