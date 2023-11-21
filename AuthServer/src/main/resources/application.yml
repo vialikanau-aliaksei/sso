@@ -3,24 +3,60 @@ server:
 spring:
   security:
     oauth2:
-      opaquetoken:
-        user:
-          client-id: user-openid
-          client-secret: Dl6aFw44COthtGiWiSlARD0V1iRkshmA
-        admin:
-          client-id: admin-openid
-          client-secret: Dl6aFw44COthtGiWiSlARD0V1iRkshmB
-        introspector:
-          client-id: introspector-id
-          client-secret: Dl6aFw44COthtGiWiSlARD0V1iRkshmC
       authorizationserver:
-        issuer-url: http://localhost:9000
-        introspection-endpoint: /oauth2/token-info
+        endpoint:
+          tokenIntrospectionUri: "/oauth2/token-info"
+        client:
+          user:
+            registration:
+              client-id: "user-openid"
+              client-secret: "{noop}Dl6aFw44COthtGiWiSlARD0V1iRkshmA"
+              client-authentication-methods:
+                - "client_secret_basic"
+              redirect-uris:
+                - "http://localhost:8080/login/oauth2/code/gateway-user"
+              authorization-grant-types:
+                - "authorization_code"
+                - "refresh_token"
+                - "client_credentials"
+              scopes:
+                - "openid"
+                - "read"
+          admin:
+            registration:
+              client-id: "admin-openid"
+              client-secret: "{noop}Dl6aFw44COthtGiWiSlARD0V1iRkshmB"
+              client-authentication-methods: "client_secret_basic"
+              redirect-uris:
+                - "http://localhost:8080/login/oauth2/code/gateway-admin"
+              authorization-grant-types:
+                - "authorization_code"
+                - "refresh_token"
+                - "client_credentials"
+              scopes:
+                - "openid"
+                - "token"
+          introspector:
+            registration:
+              client-id: "introspector-id"
+              client-secret: "{noop}Dl6aFw44COthtGiWiSlARD0V1iRkshmC"
+              client-authentication-methods: "client_secret_basic"
+              redirect-uris:
+                - "http://localhost:8080/login/oauth2/code/gateway-admin"
+              authorization-grant-types:
+                - "client_credentials"
+              scopes:
+                - "openid"
       client:
         registration:
           google:
-            client-id: 670228736623-iptnn4bfuvvu30kc80cgsblnldd9vehg.apps.googleusercontent.com
-            client-secret: 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
+            client-id: "670228736623-iptnn4bfuvvu30kc80cgsblnldd9vehg.apps.googleusercontent.com"
+            client-secret: "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"
+      resourceserver:
+        opaquetoken:
+          introspection-uri: "/oauth2/token-info"
+          client-id: "introspector-id"
+          client-secret: "{noop}Dl6aFw44COthtGiWiSlARD0V1iRkshmC"
 logging:
   level:
     org:
