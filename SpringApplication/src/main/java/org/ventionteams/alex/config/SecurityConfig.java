@@ -26,14 +26,12 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http
-                .authorizeHttpRequests(authorizeRequests -> authorizeRequests
+        return http.authorizeHttpRequests(authorizeRequests -> authorizeRequests
                         .requestMatchers("/api/**").hasAuthority("SCOPE_read")
                         .requestMatchers("/token/**").hasAuthority("SCOPE_token")
                         .anyRequest().authenticated()
-                )
-                .oauth2ResourceServer(configurer -> configurer.opaqueToken(Customizer.withDefaults()));
-        return http.build();
+                ).oauth2ResourceServer(configurer -> configurer.opaqueToken(Customizer.withDefaults()))
+                .build();
     }
 
     @Bean
