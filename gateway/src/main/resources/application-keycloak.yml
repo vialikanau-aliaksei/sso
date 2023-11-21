@@ -13,4 +13,4 @@ spring:
             scope:
               - openid
               - read
-              - admin
+              - token

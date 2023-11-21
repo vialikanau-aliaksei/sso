@@ -4,8 +4,6 @@ spring:
   security:
     oauth2:
       authorizationserver:
-        endpoint:
-          tokenIntrospectionUri: "/oauth2/token-info"
         client:
           user:
             registration:
@@ -22,6 +20,8 @@ spring:
               scopes:
                 - "openid"
                 - "read"
+            token:
+              access-token-format: "reference"
           admin:
             registration:
               client-id: "admin-openid"
@@ -36,6 +36,8 @@ spring:
               scopes:
                 - "openid"
                 - "token"
+            token:
+              access-token-format: "reference"
           introspector:
             registration:
               client-id: "introspector-id"
@@ -47,16 +49,13 @@ spring:
                 - "client_credentials"
               scopes:
                 - "openid"
+            token:
+              access-token-format: "reference"
       client:
         registration:
           google:
             client-id: "670228736623-iptnn4bfuvvu30kc80cgsblnldd9vehg.apps.googleusercontent.com"
             client-secret: "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"
-      resourceserver:
-        opaquetoken:
-          introspection-uri: "/oauth2/token-info"
-          client-id: "introspector-id"
-          client-secret: "{noop}Dl6aFw44COthtGiWiSlARD0V1iRkshmC"
 logging:
   level:
     org:

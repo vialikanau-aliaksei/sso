@@ -2,8 +2,7 @@ spring:
   security:
     oauth2:
       resourceserver:
-        opaquetoken:
-          introspector:
-            introspection-uri: http://localhost:9000/realms/ventionteams/protocol/openid-connect/token/introspect
-            client-id: ventionteams-openid
-            client-secret: 79sfub70V4RHlIHXsXCiZrPA5lEqQdw2
+        opaque-token:
+          introspection-uri: http://localhost:9000/realms/ventionteams/protocol/openid-connect/token/introspect
+          client-id: ventionteams-openid
+          client-secret: 79sfub70V4RHlIHXsXCiZrPA5lEqQdw2
