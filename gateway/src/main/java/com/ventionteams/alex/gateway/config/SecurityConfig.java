@@ -1,5 +1,8 @@
 package com.ventionteams.alex.gateway.config;
 
+import org.springframework.cloud.gateway.route.RouteLocator;
+import org.springframework.cloud.gateway.route.builder.GatewayFilterSpec;
+import org.springframework.cloud.gateway.route.builder.RouteLocatorBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
@@ -46,5 +49,13 @@ public class SecurityConfig {
         Map<String, String> patterns = Arrays.stream(LocationPattern.values())
                 .collect(Collectors.toMap(LocationPattern::getPattern, LocationPattern::getLocation));
         return new CustomAuthenticationEntryPoint(patterns);
+    }
+
+    @Bean
+    public RouteLocator customRouteLocator(RouteLocatorBuilder builder) {
+        return builder.routes()
+                .route("token", r -> r.path("/token/**")
+                        .filters(GatewayFilterSpec::tokenRelay)
+                        .uri("lb://resourceapp")).build();
     }
 }

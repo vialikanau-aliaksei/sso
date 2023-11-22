@@ -15,12 +15,6 @@ spring:
             - Path=/api/**
           filters:
             - TokenRelay=
-        - id: token
-          uri: lb://resourceapp
-          predicates:
-            - Path=/token/**
-          filters:
-            - TokenRelay=
 eureka:
   instance:
     hostname: localhost
